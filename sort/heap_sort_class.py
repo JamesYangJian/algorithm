@@ -65,20 +65,20 @@ class heap:
             #print A
 
     def heap_sort(self):
-        B = []
+        #B = []
         self.build_max_heap()
 
         for i in xrange(self.heap_size-1, 0, -1):
             self.A[0], self.A[i] = self.A[i], self.A[0]
-            B.insert(0, self.A[i])
+            #B.insert(0, self.A[i])
             #A.pop(i)
             self.heap_size -= 1
             #max_heapify(A, 0)
             self.max_heapify_non_recursive(0)
 
-        B.insert(0, self.A[0])
+        #B.insert(0, self.A[0])
 
-        return B
+        #return B
 
 
 def heap_sort(A):

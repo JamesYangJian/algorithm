@@ -3,7 +3,7 @@ import random
 import time
 
 
-from heap_sort import *
+from heap_sort_class import *
 
 
 
@@ -23,10 +23,10 @@ if __name__ == '__main__':
         print A
     t = time.time()
     
-    B = heap_sort(A)
+    heap_sort(A)
 
     #merge_sortion(A, 0, total_lendd-1)
     usage = time.time() -t
     print 'Sorted Array, usage=%f' %(usage)
     if print_list:
-        print B
+        print A
