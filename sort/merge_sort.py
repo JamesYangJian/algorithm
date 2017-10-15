@@ -23,13 +23,13 @@ def merge(A, left, mid, right):
             A[i] = right_array[right_idx]
             right_idx += 1
 
-def merge_sortion(A, low, high):
+def merge_sort(A, low, high):
     if low == high:
         return
     else:
         mid = (low+high)/2
-        merge_sortion(A, low, mid)
-        merge_sortion(A, mid+1, high)
+        merge_sort(A, low, mid)
+        merge_sort(A, mid+1, high)
         merge(A, low, mid, high)
 
     return
@@ -51,7 +51,7 @@ if __name__ == '__main__':
         print A
     t = time.time()
     
-    merge_sortion(A, 0, total_len-1)
+    merge_sort(A, 0, total_len-1)
     usage = time.time() -t
     print 'Sorted Array, usage=%f' %(usage)
     if print_list:

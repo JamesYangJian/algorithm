@@ -71,7 +71,7 @@ if __name__ == '__main__':
     graph['B']['D'] = 4
     graph['C'] = {}
     graph['C']['E'] = 4
-    graph['C']['F'] = 3
+    graph['C']['F'] = 8
     graph['D'] = {}
     graph['D']['E'] = 6
     graph['E'] = {}
