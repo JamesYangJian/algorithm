@@ -5,7 +5,7 @@ import numpy as np
 
 
 def fibs_matrix(n):
-    aa = np.array([[1,1],[1,0]], dtype=np.longdouble)
+    aa = np.array([[1,1],[1,0]], dtype=np.int64)
     bb = np.array([[1,1],[1,0]])
     
 
@@ -18,7 +18,10 @@ def fibs_matrix(n):
             aa = aa.dot(bb)
         return aa[1][0]
 
+
 def fibs_recursive(n):
+    global count
+    count += 1
     if n == 0:
         return 0
     elif n == 1:
@@ -53,12 +56,15 @@ def fibs_iterate(n):
 if __name__ == '__main__':
     num = int(sys.argv[1])
     type = sys.argv[2]
-
+    global count
+    count = 0
     start = time.time()
 
     if type == 'r':
         sys.setrecursionlimit(100000)
         val = fibs_recursive(num)
+
+        print 'Recursive count = %d' %(count)
     elif type == 'i':
         val = fibs_iterate(num)
     elif type == 'm':
