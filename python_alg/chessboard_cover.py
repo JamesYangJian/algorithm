@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-  
 import sys
 
 """
@@ -71,8 +72,3 @@ if __name__ == '__main__':
     
     for row in board:
         print(" %2i"*w % tuple(row))
-        
-        
-        
-    
-        
