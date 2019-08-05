@@ -23,6 +23,9 @@ Analyze:
 2. This solution is to has a length n check to find a possible candidate, and use another length n check to confirm it
 
 """
+import sys
+import time
+
 def find_star(G):
     s = 0
     v = 1
@@ -73,7 +76,10 @@ def find_star(G):
 if __name__ == '__main__':
     import random
 
-    total = 100
+    if len(sys.argv) < 2:
+        total = 100
+    else:
+        total = int(sys.argv[1])
 
     G = [[random.randrange(2) for i in range(total)] for i in range(total)]
 
@@ -87,5 +93,8 @@ if __name__ == '__main__':
 
     # for row in G:
     #     print(" %2i" * total % tuple(row))
-
+    start = time.time()
     find_star(G)
+    usage = time.time() - start
+
+    print("Usage: {u}".format(u=usage))
