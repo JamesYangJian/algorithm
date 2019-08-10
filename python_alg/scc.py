@@ -39,6 +39,7 @@ def find_sccs_rec(G, s, cur_path=[], sccs=[]):
     Use DFS to find scc in a graph
     traverse the graph in each path, find the SCC and put it into list
     remove node from path when all of its children has been handled
+    cur_path is used as an assistat LIFO stack to support DFS search
     """
 
     cur_path.append(s)
