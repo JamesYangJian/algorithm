@@ -33,3 +33,32 @@ def check_num_power_of_2(a):
         return True
     else:
         return False
+        
+def dfs_topsort(G):
+    S, res = set(), []
+    def recurse(u):
+        if u in S:
+            return
+        S.add(u)
+        for v in G[u]:
+            recurse(v)
+        res.append(u)
+    for u in G:
+        recurse(u)
+    res.reverse()
+    
+    return res
+    
+    
+def walk(G, s, S=set()):
+    P, Q = {}, set()
+    P[s] = None
+    
+    Q.add(s)
+    while Q:
+        u = Q.pop()
+        for v in G[u].difference(P, S):
+            Q.add(v)
+            P[v] = u
+            
+    return P
