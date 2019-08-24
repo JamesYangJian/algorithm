@@ -292,7 +292,7 @@ if __name__ == '__main__':
     else:
         number = int(sys.argv[1])
 
-    Pts = [ {'x': random.randint(0, 1000), 'y': random.randint(0, 1000)} for i in range(number)]
+    Pts = [ {'x': random.randint(0, 100000), 'y': random.randint(0, 100000)} for i in range(number)]
 
     Pts = sorted(Pts, key=functools.cmp_to_key(cmp_by_x))
 
@@ -311,8 +311,8 @@ if __name__ == '__main__':
     # print(convex_hull_list)
 
     start = time.time()
-    convex_hull_list = brute_hull(Pts, 0, len(Pts) - 1)
+    # convex_hull_list = brute_hull(Pts, 0, len(Pts) - 1)
     usage = time.time() - start
     print('Brute: usage: %f' % usage)
-    plot_pts_and_convex(Pts, [convex_hull_list])
+    # plot_pts_and_convex(Pts, [convex_hull_list])
 
