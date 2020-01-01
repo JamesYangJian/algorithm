@@ -228,10 +228,10 @@ class SudokuSolution(object):
         guess_row, guess_col = self.find_next_guess_point(0, 0)
         ret = self.guess(guess_row, guess_col, self.total, self.confirmed_set)
 
-        #result = np.array(self.total)
-        #print(result)
-
-        self.print_matrix()
+        if not ret:
+            print("Can't find a valid solution for it??")
+        else:
+            self.print_matrix()
 
     def print_matrix(self):
         for row in range(self.length):
@@ -255,6 +255,16 @@ def load_confirmed_data_from_file(filename):
         print("File format is invalid: %s" % str(e))
         return None
 
+def print_help():
+    print("test --- automatically generate a test input")
+    print("show --- view current matrix")
+    print("l filename --- load data from specified file")
+    print("d row col value --- delete a point")
+    print("row col value --- input a row/col/value tuple")
+    print("end --- finish input and begin to caculate")
+    print("h --- print this message")
+    print("q --- exit program")
+
 
 
 if __name__ == '__main__':
@@ -263,28 +273,32 @@ if __name__ == '__main__':
     solution = SudokuSolution(3, confirmed_set)
 
     while True:
-        para_string = input("Input (row col value):")
+        para_string = input("Input (h for help):")
         
         if para_string == "end":
             break
-        if para_string == 'q':
+        elif para_string == 'q':
             sys.exit(0)
-        if para_string == 'test':
+        elif para_string == 'h':
+            print_help()
+            continue
+        elif para_string == 'test':
             confirmed_set = {(0, 3, 5), (1, 0, 3), (1, 1, 6), (2, 3, 9), (2, 4, 2), (2, 8, 1),
                     (3, 2, 9), (4, 0, 5), (4, 5, 7), (4, 6, 3), (4, 7, 6), (5, 7, 8), (6, 2, 2), (6, 8, 9),
                     (7, 5, 6), (8, 2, 8), (8, 3, 1) }
             break
-        if para_string == "show":
+        elif para_string == "show":
             solution.set_confirmed_set(confirmed_set)
             solution.print_matrix()
             continue
-        if para_string.startswith('d'):
+        elif para_string.startswith('d'):
             paras = para_string.split()
             try:
                 confirmed_set.remove((int(paras[1]), int(paras[2]), int(paras[3])))
+                continue
             except Exception as e:
                 print("Invalid input %s" % str(e))
-        if para_string.startswith('l'):
+        elif para_string.startswith('l'):
             paras = para_string.split()
             if len(paras) < 2:
                 print("Invalid command: %s!" % para_string)
