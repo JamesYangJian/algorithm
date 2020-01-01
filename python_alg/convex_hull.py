@@ -292,8 +292,9 @@ if __name__ == '__main__':
     else:
         number = int(sys.argv[1])
 
-    Pts = [ {'x': random.randint(0, 100000), 'y': random.randint(0, 100000)} for i in range(number)]
-
+    PT_set = set((random.randint(0, 1000), random.randint(0, 1000)) for i in range(number))
+    Pts = [{'x': pt[0], 'y': pt[1]} for pt in PT_set]
+    print('The number of points is %d' % len(Pts))
     Pts = sorted(Pts, key=functools.cmp_to_key(cmp_by_x))
 
     # print(Pts)
