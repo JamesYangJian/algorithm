@@ -1,4 +1,32 @@
+# -*- coding: utf-8 -*-
 
+'''
+sudoku的一个解法：
+1. 数据结构：
+total: nxn矩阵，每一个点保存当前点可能的取值，最开始每个点都是1-9
+confirmed_set: 集合，每一个元素为三元组，（row， col， value），表示一个确定的点及其取值
+actual： 九宫格内容， 根据total和confirmed确定的当前九宫格的取值，确定的填入，不确定的填0
+
+2. 计算过程
+2.1 循环以下过程
+  a). 根据传入的confirmed_set, 排除total中每个点不可能出现的数字
+  b). 根据新的total表，找出新的能够确认的点，加入到confirmed_set列表
+  c). 如果没有新的确认点了，推出循环，否则继续循环
+
+3.1 依照从上到下，从左到右的方式试验每一个点可能的取值， 从第一个点开始
+  a). 取当前点可能的取值列表，进行迭代
+  b). 拷贝total和confirmed_set的快照new_total, new_confirmed_set
+  c). 将(row, col, possible_v)加入new_confirmed_set
+  d). 使用new_total和new_confirmed_set进行步骤2.1，计算加入新点之后可能的引起的变化
+  e). 如果new_confirmed_set长度为nxn了，说明成功，返回True
+  f). 使用new_total, new_confirmed_set，并找到下一个值不确定的点，递归调用guess (3.1)
+  g). 如果递归调用返回False，说明本次猜测失败，取下一个可能值，从a)开始执行
+  h). 如果递归调用返回True， 说明本次猜测成功，将new_confirmed_set和new_total拷贝回confirmed_set和total，返回True
+  j). 如果可能的点都迭代完了，则返回False，说明上一轮的猜测失败了
+
+3.2 如果猜测失败，说明这局数独输入错误，如果猜测成功，则该局已经解开，打印actual即可
+
+'''
 
 import numpy as np
 import copy
